@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('master') {
         when {
-            branch 'master' 
+            branch 'origin/master' 
         }
       steps {
         echo "hello master"
@@ -14,7 +14,7 @@ pipeline {
     }
     stage('release') {
         when {
-            branch 'release'
+            branch 'origin/release'
         }
       steps {
         echo "hello release"
