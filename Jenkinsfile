@@ -1,25 +1,26 @@
 pipeline{
-    agent { label 'maven'}
+    agent any 
     parameters{
-        gitParameter branchFilter: 'origin/*', name: 'BRANCH', type: 'PT_BRANCH'
-    }   
+        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'origin/master', name: 'BRANCH', type: 'PT_BRANCH'
+        gitParameter name: 'TAG',type: 'PT_TAG', selectedValue: 'NONE'
+    }
     stages{
-        stage('master'){
-            when {
-                expression { GIT_BRANCH == 'origin/master'  }
+        stage ('master') {
+            when { 
+                expression {GIT_BRANCH == 'origin/master'  }
             }
+            tools { maven 'MAVEN_HOME' }
             steps{
-                echo "master"
+                sh 'mvn clean install'
             }
         }
         stage ('release'){
             when {
-                expression { GIT_BRANCH == 'origin/release'  }
+                expression {GIT_BRANCH == 'origin/release'  }
             }
+            tools { maven 'MAVEN_HOME' }
             steps{
-                echo "release"
-            }                
-            
+                    echo 'release' }
         }
     }
 }
