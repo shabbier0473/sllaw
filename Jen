@@ -16,7 +16,7 @@ pipeline{
         }
         stage('compile'){
             steps {
-                build job: 'compile' ,parameters: [string(name:'work',value: '/home/maven/workspace/mainpipeline')]
+                build job: 'compile' 
             }
         }
     }
