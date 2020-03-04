@@ -4,9 +4,12 @@ pipeline {
     gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
   }
   stages {
-    stage('Example') {
+    stage('master') {
+        when {
+            expression {GIT_BRANCH == 'origin/master'  }
+        }
       steps {
-        echo "hello"
+        echo "hello master"
       }
     }
   }
