@@ -1,35 +1,25 @@
 pipeline{
-    agent{
-        label 'maven'
-    }
+    agent { label 'maven'}
+    parameters{
+        gitParameter branchFilter: 'origin/(.*)', name: 'BRANCH', type: 'PT_BRANCH'
+    }   
     stages{
-        stage ('build master'){
+        stage('master'){
             when {
-                branch 'master'
-            }
-            tools{
-                maven 'MAVEN_HOME'
-                jdk 'JAVA_HOME'
+                expression { GIT_BRANCH == 'origin/master'  }
             }
             steps{
-                timestamps{
-                 echo '========master======='
-                 sh 'mvn install' 
-                }
-               
+                echo "master"
             }
         }
-        stage ('build release'){
+        stage ('release'){
             when {
-                branch 'release'
-            }
-            tools{
-                maven 'MAVEN_HOME'
+                expression { GIT_BRANCH == 'origin/release'  }
             }
             steps{
-                echo '======release========='
-                sh 'mvn install'
-            }
+                echo "release"
+            }                
+            
         }
     }
 }
