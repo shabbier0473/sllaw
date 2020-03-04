@@ -7,7 +7,7 @@ pipeline{
     stages{
         stage ('master') {
             when { 
-                expression {GIT_BRANCH == 'origin/master'  }
+                expression {GIT_BRANCH == 'master'  }
             }
             steps{
                 echo "master"
@@ -15,7 +15,7 @@ pipeline{
         }
         stage ('release'){
             when {
-                expression {GIT_BRANCH == 'origin/release'  }
+                expression {GIT_BRANCH == 'release'  }
             }
             steps{
                     echo 'release' }
