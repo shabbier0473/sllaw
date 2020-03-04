@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('master') {
         when {
-            git branch: "${params.BRANCH}" == 'origin/master'  
+            branch 'master' 
         }
       steps {
         echo "hello master"
@@ -14,7 +14,7 @@ pipeline {
     }
     stage('release') {
         when {
-            git branch: "${params.BRANCH}" == 'origin/release' 
+            branch 'release'
         }
       steps {
         echo "hello release"
