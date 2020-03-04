@@ -1,5 +1,5 @@
 pipeline{
-    agent maven 
+    agent{ label  'maven' } 
     parameters{
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'origin/master', name: 'BRANCH', type: 'PT_BRANCH'
     }
