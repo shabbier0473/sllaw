@@ -1,26 +1,33 @@
 pipeline{
-    agent {label 'maven' } 
+    agent maven 
     parameters{
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'origin/master', name: 'BRANCH', type: 'PT_BRANCH'
     }
     stages{
-        stage ('master') {
+        stage ('validate') {
             when { 
-                expression {BRANCH == 'master'  }
+                expression {BRANCH == 'develop'  }
             }
-            tools { maven 'MAVEN_HOME' }
             steps{
                 sh 'mvn validate'
             }
         }
-        stage ('release'){
+        stage ('compile'){
             when {
-                expression {BRANCH == 'release'  }
+                expression {BRANCH == 'develop'  }
             }
-            tools { maven 'MAVEN_HOME' }
             steps{
-                   sh 'mvn install' 
+                   sh 'mvn compile' 
                 }
         }
+       stage ('test'){
+            when {
+                expression {BRANCH == 'develop'  }
+            }
+            steps{
+                   sh 'mvn test' 
+                }
+        }
+        
     }
 }
