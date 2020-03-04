@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage ('master') {
             when { 
-                expression {BRANCH == 'origin/master'  }
+                expression {BRANCH == 'master'  }
             }
             steps{
                 echo "master"
