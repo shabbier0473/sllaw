@@ -1,5 +1,5 @@
 pipeline{
-    agent any 
+    agent maven 
     parameters{
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'origin/master', name: 'BRANCH', type: 'PT_BRANCH'
     }
@@ -9,7 +9,7 @@ pipeline{
                 expression {BRANCH == 'master'  }
             }
             steps{
-                echo "master"
+                sh 'mvn validate'
             }
         }
         stage ('release'){
@@ -17,7 +17,8 @@ pipeline{
                 expression {BRANCH == 'release'  }
             }
             steps{
-                    echo 'release' }
+                   sh 'mvn install' 
+                }
         }
     }
 }
