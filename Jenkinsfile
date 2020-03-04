@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Example') {
       steps {
-        git branch: "${params.BRANCH}", url: 'https://github.com/shabbier0473/sllaw.git'
+        echo "hello"
       }
     }
   }
