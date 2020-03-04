@@ -14,7 +14,7 @@ pipeline{
         }
         stage ('release'){
             when {
-                expression {BRANCH == 'origin/release'  }
+                expression {BRANCH == 'release'  }
             }
             steps{
                     echo 'release' }
