@@ -1,16 +1,13 @@
 pipeline {
-    agent any
-    parameters {
-        gitParameter branchFilter: 'origin.*/(.*)', defaultValue: 'master', name: 'BRANCH_A', type: 'PT_BRANCH', useRepository: '.*exampleA.git'
-        gitParameter branchFilter: 'origin.*/(.*)', defaultValue: 'master', name: 'BRANCH_B', type: 'PT_BRANCH', useRepository: '.*exampleB.git'
-        
+  agent any
+  parameters {
+    gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+  }
+  stages {
+    stage('Example') {
+      steps {
+        git branch: "${params.BRANCH}", url: 'https://github.com/shabbier0473/sllaw.git'
+      }
     }
-    stages {
-        stage('Example') {
-            steps {
-                git branch: "${params.BRANCH_A}", url: 'https://github.com/klimas7/exampleA.git'
-                git branch: "${params.BRANCH_B}", url: 'https://github.com/klimas7/exampleB.git'
-            }
-        }
-    }
+  }
 }
