@@ -12,5 +12,13 @@ pipeline {
         echo "hello master"
       }
     }
+    stage('master') {
+        when {
+            expression {GIT_BRANCH == 'origin/release'  }
+        }
+      steps {
+        echo "hello release"
+      }
+    }
   }
 }
