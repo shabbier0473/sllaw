@@ -4,7 +4,7 @@ pipeline{
          gitParameter branchFilter: 'origin/(.*)', defaultValue: 'origin/master', name: 'BRANCH', type: 'PT_BRANCH'
     }
     stages{
-        stage ('build master'){
+        stage ('master'){
             when {
                 branch 'master'
             }
@@ -20,7 +20,7 @@ pipeline{
                
             }
         }
-        stage ('build release'){
+        stage ('release'){
             when {
                 branch 'release'
             }
