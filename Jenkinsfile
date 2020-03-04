@@ -5,6 +5,7 @@ pipeline{
     }
     stages{
         stage ('validate') {
+            tools{ maven 'MAVEN_HOME' }
             when { 
                 expression {BRANCH == 'devlop'  }
             }
@@ -13,6 +14,7 @@ pipeline{
             }
         }
         stage ('compile'){
+            tools{ maven 'MAVEN_HOME' }
             when {
                 expression {BRANCH == 'devlop'  }
             }
@@ -21,6 +23,7 @@ pipeline{
                 }
         }
        stage ('test'){
+            tools{ maven 'MAVEN_HOME' }
             when {
                 expression {BRANCH == 'devlop'  }
             }
