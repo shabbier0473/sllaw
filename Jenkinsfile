@@ -8,6 +8,7 @@ pipeline{
             when { 
                 expression {BRANCH == 'master'  }
             }
+            tools { maven 'MAVEN_HOME' }
             steps{
                 sh 'mvn validate'
             }
@@ -16,6 +17,7 @@ pipeline{
             when {
                 expression {BRANCH == 'release'  }
             }
+            tools { maven 'MAVEN_HOME' }
             steps{
                    sh 'mvn install' 
                 }
