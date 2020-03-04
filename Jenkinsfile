@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage ('master') {
             when { 
-                expression {PT_BRANCH == 'origin/master'  }
+                expression {BRANCH == 'origin/master'  }
             }
             steps{
                 echo "master"
@@ -14,7 +14,7 @@ pipeline{
         }
         stage ('release'){
             when {
-                expression {PT_BRANCH == 'origin/release'  }
+                expression {BRANCH == 'origin/release'  }
             }
             steps{
                     echo 'release' }
