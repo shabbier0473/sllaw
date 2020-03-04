@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage ('validate') {
             when { 
-                expression {BRANCH == 'develop'  }
+                expression {BRANCH == 'devlop'  }
             }
             steps{
                 sh 'mvn validate'
@@ -14,7 +14,7 @@ pipeline{
         }
         stage ('compile'){
             when {
-                expression {BRANCH == 'develop'  }
+                expression {BRANCH == 'devlop'  }
             }
             steps{
                    sh 'mvn compile' 
@@ -22,7 +22,7 @@ pipeline{
         }
        stage ('test'){
             when {
-                expression {BRANCH == 'develop'  }
+                expression {BRANCH == 'devlop'  }
             }
             steps{
                    sh 'mvn test' 
