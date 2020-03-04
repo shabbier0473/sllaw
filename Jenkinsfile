@@ -1,7 +1,7 @@
 pipeline{
     agent { label 'maven'}
     parameters{
-        gitParameter branchFilter: 'origin/(.*)', name: 'BRANCH', type: 'PT_BRANCH'
+        gitParameter branchFilter: 'origin/*', name: 'BRANCH', type: 'PT_BRANCH'
     }   
     stages{
         stage('master'){
