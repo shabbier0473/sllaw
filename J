@@ -2,7 +2,7 @@ pipeline{
     agent{
         node{
         label 'maven'
-        customWorkspace '/home/maven/workspace/sllaw'
+        ws ('/home/maven/workspace/sllaw')
         }
     }
     stages{
