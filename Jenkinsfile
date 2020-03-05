@@ -8,7 +8,7 @@ pipeline{
         stage ('dev') {
             tools{ maven 'MAVEN_HOME' }
             when { 
-                expression { PT_BRANCH == 'origin/devlop'  }
+                expression { BRANCH == 'origin/devlop' || BRANCH == 'devlop'  }
             }
             steps{
                 sh 'mvn validate'
@@ -21,7 +21,7 @@ pipeline{
         stage ('QA'){
             tools{ maven 'MAVEN_HOME' }
             when {
-                expression { PT_TAG == '2.0.1' || PT_BRANCH == 'origin/release' }
+                expression { PT_TAG == '2.0.1' || BRANCH == 'origin/release' || BRANCH == 'release' }
             }
             steps{
                    sh 'mvn install' 
