@@ -23,6 +23,15 @@ pipeline{
                    sh 'mvn compile' 
                 }
         }
+        stage ('sonar analysis'){
+            tools{ maven 'MAVEN_HOME' }
+            when {
+                expression {BRANCH == 'devlop'  }
+            }
+            steps{
+                   sh 'mvn sonar:sonar' 
+                }
+        }        
        stage ('test'){
             tools{ maven 'MAVEN_HOME' }
             when {
