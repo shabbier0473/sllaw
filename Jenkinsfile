@@ -8,7 +8,7 @@ pipeline{
         stage ('dev') {
             tools{ maven 'MAVEN_HOME' }
             when { 
-                expression {BRANCH == 'origin/devlop'  }
+                expression {BRANCH == 'origin/devlop' || BRANCH == 'devlop'  }
             }
             steps{
                 sh 'mvn validate'
