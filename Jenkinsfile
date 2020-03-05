@@ -2,13 +2,13 @@ pipeline{
     agent{ label  'maven' } 
     parameters{
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'origin/devlop', name: 'BRANCH', type: 'PT_BRANCH'
-        gitParameter name: 'TAG',type: 'PT_TAG', selectedValue: 'NONE'
+        gitParameter name: 'TAG',type: 'PT_TAG', selectedValue: 'NONE' , defaultValue: 'origin/release'
     }
     stages{
         stage ('dev') {
             tools{ maven 'MAVEN_HOME' }
             when { 
-                expression {BRANCH == 'devlop'  }
+                expression { BRANCH == 'origin/devlop' || BRANCH == 'devlop'  }
             }
             steps{
                 sh 'mvn validate'
@@ -21,11 +21,11 @@ pipeline{
         stage ('QA'){
             tools{ maven 'MAVEN_HOME' }
             when {
-                expression {TAG == '2.0.1'  }
+                expression { BRANCH == 'origin/release' || BRANCH == 'release'  }
             }
             steps{
                    sh 'mvn install' 
-                   echo '=====TAG======='
+                   echo '=====TAG========='
             }
         }
         
