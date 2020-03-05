@@ -25,7 +25,7 @@ pipeline{
             }
             steps{
                    sh 'mvn install' 
-                   echo '=====TAG======='
+                   echo '=====TAG========='
             }
         }
         
