@@ -1,7 +1,7 @@
 pipeline{
     agent{ label  'maven' } 
     parameters{
-        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'origin/devlop', name: 'BRANCH', type: 'PT_BRANCH'
+        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'origin/devlop', name: 'BRANCH', type: 'PT_BRANCH' , selectedValue: 'NONE'
         gitParameter name: 'TAG',type: 'PT_TAG', selectedValue: 'NONE'
     }
     stages{
@@ -21,7 +21,7 @@ pipeline{
         stage ('QA'){
             tools{ maven 'MAVEN_HOME' }
             when {
-                expression {TAG == '2.0.0'  }
+                expression {TAG == '*'  }
             }
             steps{
                    sh 'mvn install' 
