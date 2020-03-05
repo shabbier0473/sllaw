@@ -41,7 +41,7 @@ pipeline{
                    sh 'mvn test' 
                 }
         }
-               stage ('test'){
+               stage ('install'){
             tools{ maven 'MAVEN_HOME' }
             when {
                 expression {BRANCH == 'release'  }
