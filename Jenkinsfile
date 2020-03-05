@@ -5,50 +5,28 @@ pipeline{
         gitParameter name: 'TAG',type: 'PT_TAG', selectedValue: 'NONE'
     }
     stages{
-        stage ('validate') {
+        stage ('dev') {
             tools{ maven 'MAVEN_HOME' }
             when { 
                 expression {BRANCH == 'devlop'  }
             }
             steps{
                 sh 'mvn validate'
+                sh 'mvn compile'
+                sh 'mvn test'
+                sh 'mvn sonar:sonar'
             }
         }
-        stage ('compile'){
+
+        stage ('QA'){
             tools{ maven 'MAVEN_HOME' }
             when {
-                expression {BRANCH == 'devlop'  }
-            }
-            steps{
-                   sh 'mvn compile' 
-                }
-        }
-        stage ('sonar analysis'){
-            tools{ maven 'MAVEN_HOME' }
-            when {
-                expression {BRANCH == 'devlop'  }
-            }
-            steps{
-                   sh 'mvn sonar:sonar' 
-                }
-        }        
-       stage ('test'){
-            tools{ maven 'MAVEN_HOME' }
-            when {
-                expression {BRANCH == 'devlop'  }
-            }
-            steps{
-                   sh 'mvn test' 
-                }
-        }
-               stage ('install'){
-            tools{ maven 'MAVEN_HOME' }
-            when {
-                expression {BRANCH == 'release'  }
+                expression {TAG == '2.0.1'  }
             }
             steps{
                    sh 'mvn install' 
-                }
+                   echo '=====TAG======='
+            }
         }
         
         
