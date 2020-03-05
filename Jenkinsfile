@@ -5,7 +5,7 @@ pipeline{
         gitParameter name: 'TAG',type: 'PT_TAG', selectedValue: 'NONE'
     }
     stages{
-        stage ('validate') {
+        stage ('dev') {
             tools{ maven 'MAVEN_HOME' }
             when { 
                 expression {BRANCH == 'devlop'  }
@@ -17,10 +17,11 @@ pipeline{
                 sh 'mvn sonar:sonar'
             }
         }
-        stage ('install'){
+
+        stage ('QA'){
             tools{ maven 'MAVEN_HOME' }
             when {
-                expression {BRANCH == 'release'  }
+                expression {TAG == '*'  }
             }
             steps{
                    sh 'mvn install' 
