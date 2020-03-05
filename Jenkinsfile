@@ -21,10 +21,11 @@ pipeline{
         stage ('QA'){
             tools{ maven 'MAVEN_HOME' }
             when {
-                expression {TAG == '2.0.0'  }
+                expression {TAG == '2.0.1'  }
             }
             steps{
                    sh 'mvn install' 
+                   echo '=====TAG======='
             }
         }
         
