@@ -21,7 +21,7 @@ pipeline{
         stage ('QA'){
             tools{ maven 'MAVEN_HOME' }
             when {
-                expression {BRANCH == '2.0.1'  }
+                expression { TAG == '2.0.1' || BRANCH == 'release' }
             }
             steps{
                    sh 'mvn install' 
