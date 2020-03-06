@@ -5,6 +5,15 @@ pipeline{
         gitParameter name: 'TAG',type: 'PT_TAG', selectedValue: 'NONE' , defaultValue: 'origin/release'
     }
     stages{
+        stage ('fea') {
+            tools{ maven 'MAVEN_HOME' }
+            when { 
+                expression { BRANCH == 'origin/feauture*' || BRANCH == 'feauture*'  }
+            }
+            steps{
+                sh 'mvn sonar:sonar'
+            }
+        }        
         stage ('dev') {
             tools{ maven 'MAVEN_HOME' }
             when { 
