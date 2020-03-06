@@ -11,7 +11,7 @@ pipeline{
                 expression { BRANCH == 'origin/feauture1' || BRANCH == 'feauture1'  }
             }
             steps{
-                sh 'mvn sonar:sonar'
+                echo '========sonar============='
             }
         }        
         stage ('dev') {
@@ -21,6 +21,7 @@ pipeline{
             }
             steps{
                 sh 'mvn validate'
+                echo '=======================dev====================================='
                 sh 'mvn compile'
                 sh 'mvn test'
                 sh 'mvn sonar:sonar'
@@ -32,9 +33,8 @@ pipeline{
             when {
                 expression { BRANCH == 'origin/release' || BRANCH == 'release'  }
             }
-            steps{
-                   sh 'mvn install' 
-                   echo '=====TAG========='
+            steps{ 
+                   echo '=====QA========='
             }
         }
         
