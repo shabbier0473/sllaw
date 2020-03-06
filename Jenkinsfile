@@ -8,7 +8,7 @@ pipeline{
         stage ('fea') {
             tools{ maven 'MAVEN_HOME' }
             when { 
-                expression { BRANCH == 'origin/feauture*' || BRANCH == 'feauture*'  }
+                expression { BRANCH == 'origin/feauture1' || BRANCH == 'feauture1'  }
             }
             steps{
                 sh 'mvn sonar:sonar'
