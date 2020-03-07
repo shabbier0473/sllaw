@@ -2,8 +2,7 @@ pipeline{
     agent{ label  'maven' } 
     parameters{
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'origin/devlop', name: 'BRANCH', type: 'PT_BRANCH'
-        gitParameter name: 'TAG',type: 'PT_TAG', selectedValue: 'NONE' , defaultValue: 'origin/release'
-        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'origin/release', name: 'BRANCH', type: 'PT_BRANCH'        
+        gitParameter name: 'TAG',type: 'PT_TAG', selectedValue: 'NONE' , defaultValue: 'origin/release'       
         
     }
     stages{
