@@ -23,7 +23,7 @@ pipeline{
             }
             steps{
                 sh 'mvn validate'
-                echo '=======================dev====================================='
+                echo '=======================devaaaaaaaaaaaaa====================================='
                 sh 'mvn compile'
                 sh 'mvn test'
             }
