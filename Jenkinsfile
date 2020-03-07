@@ -35,7 +35,7 @@ pipeline{
                 expression { BRANCH == 'origin/release' || BRANCH == 'release'  }
             }
             steps{ 
-                   echo '=====QA========='
+                   echo '=====QA=========QA'
             }
         }
         
