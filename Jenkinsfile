@@ -23,6 +23,7 @@ pipeline{
             }
             steps{
                 sh 'mvn validate'
+                sh 'mvn sonar:sonar'
                 echo '=======================dev====================================='
                 sh 'mvn compile'
                 sh 'mvn test'
