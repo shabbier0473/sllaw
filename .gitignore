@@ -1,3 +1,6 @@
+.mvn
+mvn
+/target
 git_rsa
 HELP.md
 target/
